@@ -38,8 +38,6 @@ hash2 = { ts: ts,
           t0: Array.new(ts.size) { |i| i = 63 * 30 * 24 * 3600 },
           power: Array.new(ts.size) { |i|  i = 2943 }}
 
-
-
 # 執行RunAns1979.new(hash, case)來配置前置檔案
 # hash即為上面說明的hash
 # case為輸出的類型

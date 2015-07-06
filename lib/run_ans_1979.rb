@@ -2,15 +2,6 @@ require './data_for_ANS_5_1_1979.rb'
 require './run_init.rb'
 
 class RunAns1979 < RunInit
-  # attr_accessor :ts, :t0, :power
-
-  # def initialize(hash_data, option = 0)
-  #   @ts = hash_data[:ts]
-  #   @t0 = hash_data[:t0]
-  #   @power = hash_data[:power]
-  #   @option = option
-  # end
-
   def run(ts = @ts, t0 = @t0, power = @power, option = @option)
     read_data = DataForANS_5_1_1979.new
     ts.each_index do |i|
@@ -41,7 +32,7 @@ class RunAns1979 < RunInit
       when 0
         printf("%3d %11d %.12f\n", sec2day(ts_to_f) / 365, ts_to_f, thePd_all)
       when 2
-        printf( "ts = %.1f sec, t0 = %.1f sec, un = %.8f , P/P0(without un) = %.8f , P/P0(with un) = %.8f , power = %.5f MW\n", 
+        printf( "ts = %.1f sec, t0 = %.1f sec, un = %.8f , P/P0(without un) = %.8f , P/P0(with un) = %.8f , power = %.5f MW\n",
                 ts_to_f, t0_to_f, un, thePd_all, thePd_all_un, thePd_all_un * power_to_f)
       when 3
         f = File.new("./#{@file_name}", 'a+')
@@ -66,32 +57,31 @@ class RunAns1979 < RunInit
     total_times = t0 + ts
     ff = HashWithThermalFission.new
     (0..read_data.theU235_alpha.size-1).each do |i|
-
-      f_U235_ts2tinf        = read_data.theU235_alpha[i] / read_data.theU235_lamda[i] * 
-                              Math.exp(-read_data.theU235_lamda[i] * ts) * 
+      f_U235_ts2tinf        = read_data.theU235_alpha[i] / read_data.theU235_lamda[i] *
+                              Math.exp(-read_data.theU235_lamda[i] * ts) *
                               (1.0 - Math.exp(-read_data.theU235_lamda[i] * read_data.tinf))
 
-      f_U235_ts_add_t02tinf = read_data.theU235_alpha[i] / read_data.theU235_lamda[i] * 
+      f_U235_ts_add_t02tinf = read_data.theU235_alpha[i] / read_data.theU235_lamda[i] *
                               Math.exp(-read_data.theU235_lamda[i] * total_times) *
                               (1.0 - Math.exp(-read_data.theU235_lamda[i] * read_data.tinf))
 
       ff.thermal_fission[:U235] = ff.thermal_fission[:U235] + f_U235_ts2tinf - f_U235_ts_add_t02tinf
 
-      f_Pu239_ts2tinf         = read_data.thePu239_alpha[i] / read_data.thePu239_lamda[i] * 
-                                Math.exp(-read_data.thePu239_lamda[i] * ts) * 
+      f_Pu239_ts2tinf         = read_data.thePu239_alpha[i] / read_data.thePu239_lamda[i] *
+                                Math.exp(-read_data.thePu239_lamda[i] * ts) *
                                 (1.0 - Math.exp(-read_data.thePu239_lamda[i] * read_data.tinf))
 
-      f_Pu239_ts_add_t02tinf  = read_data.thePu239_alpha[i] / read_data.thePu239_lamda[i] * 
+      f_Pu239_ts_add_t02tinf  = read_data.thePu239_alpha[i] / read_data.thePu239_lamda[i] *
                                 Math.exp(-read_data.thePu239_lamda[i] * total_times) *
                                 (1.0 - Math.exp(-read_data.thePu239_lamda[i] * read_data.tinf))
 
       ff.thermal_fission[:Pu239] = ff.thermal_fission[:Pu239] + f_Pu239_ts2tinf - f_Pu239_ts_add_t02tinf
 
-      f_U238_ts2tinf          = read_data.theU238_alpha[i] / read_data.theU238_lamda[i] * 
-                                Math.exp(-read_data.theU238_lamda[i] * ts) * 
+      f_U238_ts2tinf          = read_data.theU238_alpha[i] / read_data.theU238_lamda[i] *
+                                Math.exp(-read_data.theU238_lamda[i] * ts) *
                                 (1.0 - Math.exp(-read_data.theU238_lamda[i] * read_data.tinf))
 
-      f_U235_ts_add_t02tinf   = read_data.theU238_alpha[i] / read_data.theU238_lamda[i] * 
+      f_U235_ts_add_t02tinf   = read_data.theU238_alpha[i] / read_data.theU238_lamda[i] *
                                 Math.exp(-read_data.theU238_lamda[i] * total_times) *
                                 (1.0 - Math.exp(-read_data.theU238_lamda[i] * read_data.tinf))
 
@@ -117,7 +107,7 @@ class RunAns1979 < RunInit
     return pd
   end
 
-  # Calculate total fission product decay heat power 
+  # Calculate total fission product decay heat power
   # at t(ts) sec after shutdown from an operating history of T(t0) sec duration. (from ANS-5.1-1979 Eq.1 and 11)
   # need t0, ts and data with thermal fission(from class DataForANS_5_1_1979)
   # ts: Time after remove (sec)
