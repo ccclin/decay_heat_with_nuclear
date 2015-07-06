@@ -1,7 +1,7 @@
-require './text_to_array.rb'
-require './run_ans_1979.rb'
-require './run_ans_1973.rb'
-require './run_asb_9_2.rb'
+require 'text_to_array.rb'
+require 'run_ans_1979.rb'
+require 'run_ans_1973.rb'
+require 'run_asb_9_2.rb'
 
 class DecayHeatWithNuclear
   class << self

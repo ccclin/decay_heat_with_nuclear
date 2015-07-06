@@ -1,4 +1,4 @@
-require './hash_with_thermal_fission.rb'
+require 'hash_with_thermal_fission.rb'
 
 # ANSI/ANS-5.1-1979, American National Standard for Decay
 # Heat Power in Light Water Reactors.
@@ -135,7 +135,7 @@ class DataForANS_5_1_1979
     return array
   end
 
-  # thePu239_lamda is lamda in ANS-5.1-1979 Table 8. 
+  # thePu239_lamda is lamda in ANS-5.1-1979 Table 8.
   def thePu239_lamda
     array = Array.new(23)
 
@@ -166,7 +166,7 @@ class DataForANS_5_1_1979
     return array
   end
 
-  # theU238_alpha is alpha in ANS-5.1-1979 Table 9. 
+  # theU238_alpha is alpha in ANS-5.1-1979 Table 9.
   def theU238_alpha
     array = Array.new(23)
 
@@ -197,7 +197,7 @@ class DataForANS_5_1_1979
     return array
   end
 
-  # theU238_lamda is lamda in ANS-5.1-1979 Table 9. 
+  # theU238_lamda is lamda in ANS-5.1-1979 Table 9.
   def theU238_lamda
     array = Array.new(23)
 

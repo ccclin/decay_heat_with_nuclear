@@ -1,5 +1,5 @@
-require './data_for_ANS_5_1_1979.rb'
-require './run_init.rb'
+require 'data_for_ANS_5_1_1979.rb'
+require 'run_init.rb'
 
 class RunAns1979 < RunInit
   def run(ts = @ts, t0 = @t0, power = @power, option = @option)

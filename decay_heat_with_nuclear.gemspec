@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = 'A simple decay heat with nuclear'
   s.authors     = ['C.lin']
   s.email       = 'demeter.yeh@gmail.com'
-  s.files       = ['lib/decay_heat_with_nuclear.rb']
+  s.files       = `git ls-files`.split("\n")
   s.homepage    = ''
   s.license     = 'GPL3.0'
 end

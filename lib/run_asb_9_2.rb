@@ -1,5 +1,5 @@
-require './data_for_ASB_9_2.rb'
-require './run_init.rb'
+require 'data_for_ASB_9_2.rb'
+require 'run_init.rb'
 
 class RunASB9_2 < RunInit
 
@@ -28,7 +28,7 @@ class RunASB9_2 < RunInit
       when 0
         printf("%3d %11d %.12f %.12f\n", sec2day(ts_to_f) / 365, ts_to_f, p_p0_tatal[:with_k], p_p0_tatal[:without_k])
       when 2
-        printf( "ts = %.1f sec, t0 = %.1f sec, P/P0(without K) = %.8f , P/P0(with K) = %.8f , power = %.5f MW\n", 
+        printf( "ts = %.1f sec, t0 = %.1f sec, P/P0(without K) = %.8f , P/P0(with K) = %.8f , power = %.5f MW\n",
                 ts_to_f, t0_to_f, p_p0_tatal[:without_k], p_p0_tatal[:with_k], p_p0_tatal[:with_k] * power_to_f)
       when 3
         f = File.new("./#{@file_name}", 'a+')
