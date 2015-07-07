@@ -1,4 +1,4 @@
-require 'hash_with_thermal_fission.rb'
+require 'hash_with_thermal_fission'
 
 # ANSI/ANS-5.1-1979, American National Standard for Decay
 # Heat Power in Light Water Reactors.
@@ -12,7 +12,7 @@ class DataForANS_5_1_1979
   # theENp239 is average energy from decay of on Np239 atom (0.419 MeV)
   attr_reader :phi, :tinf, :theR, :lamda1, :lamda2, :theEU239, :theENp239
 
-  def initialize()
+  def initialize
     @phi = 3.0
     @tinf = 1.0E+13
     @theR = 6.20E-01

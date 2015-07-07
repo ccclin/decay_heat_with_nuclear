@@ -1,5 +1,5 @@
-require 'data_for_ANS_5_1_1979.rb'
-require 'run_init.rb'
+# require 'data_for_ANS_5_1_1979.rb'
+require 'run_init'
 
 class RunAns1979 < RunInit
   def run(ts = @ts, t0 = @t0, power = @power, option = @option)
@@ -41,6 +41,8 @@ class RunAns1979 < RunInit
       end
     end
   end
+
+  private
 
   # Calculate thermal fission functions from ANS-5.1-1979 Table 7~9 include U235, Pu239 and U238.
   # need t0, ts and data with thermal fission(from class DataForANS_5_1_1979)

@@ -1,5 +1,5 @@
-require 'data_for_ASB_9_2.rb'
-require 'run_init.rb'
+# require 'data_for_ASB_9_2.rb'
+require 'run_init'
 
 class RunASB9_2 < RunInit
 
@@ -37,6 +37,8 @@ class RunASB9_2 < RunInit
       end
     end
   end
+
+  private
 
   # Calculate thermal fission functions from ASB9-2.
   # need t0, ts and data with thermal fission(from class DataForASB_9_2)

@@ -1,11 +1,10 @@
-require 'hash_with_thermal_fission.rb'
+require 'hash_with_thermal_fission'
 
 # ANS/ANSI-5.1-1973, Standard for Decay Heat.
 class DataForANS_5_1_1973
-
   # attr_reader
 
-  def initialize()
+  def initialize
   end
 
   # theAn is An in ANS/ANSI-5.1-1973.

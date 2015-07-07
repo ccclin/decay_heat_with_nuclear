@@ -1,11 +1,10 @@
-require 'hash_with_thermal_fission.rb'
+require 'hash_with_thermal_fission'
 
 # ASB9-2, Standard for Decay Heat.
 class DataForASB_9_2
-
   # attr_reader
 
-  def initialize()
+  def initialize
   end
 
   # theAn is An in ASB9-2.
