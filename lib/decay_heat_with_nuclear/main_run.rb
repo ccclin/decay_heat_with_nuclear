@@ -8,6 +8,17 @@ module MainRun
       @power = hash_data[:power]
       @option = option
       @file_name = file_name
+      @output_hash = {
+                      ts:             [],
+                      p_p0:           [],
+                      p_p0_without_k: []
+                      }
+    end
+
+    def dataout(ts, p_p0, p_p0_without_k = nil)
+      @output_hash[:ts] << ts
+      @output_hash[:p_p0] << p_p0
+      @output_hash[:p_p0_without_k] << p_p0_without_k if p_p0_without_k
     end
 
     # day2sec(day)
@@ -24,7 +35,7 @@ module MainRun
   end
 
   class RunAns1973 < RunInit
-    def run(ts = @ts, t0 = @t0, power = @power, option = @option)
+    def run(ts = @ts, t0 = @t0, power = @power)
       read_data = ThermalData::DataForANS_5_1_1973.new
       ts.each_index do |i|
         ts_to_f = ts[i].to_f
@@ -41,20 +52,9 @@ module MainRun
 
         p_p0_tatal    = p_p0 + p_p0_U239 + p_p0_Np239
 
-        case option
-        when 1
-          printf("ts =  %3d years P/P0 %.12f\n", sec2day(ts_to_f) / 365, p_p0_tatal)
-        when 0
-          printf("%3d %11d %.12f\n", sec2day(ts_to_f) / 365, ts_to_f, p_p0_tatal)
-        when 2
-          printf("ts = %.1f sec, t0 = %.1f sec, P/P0 = %.8f , power = %.5f MW\n",
-                 ts_to_f, t0_to_f, p_p0_tatal, p_p0_tatal * power_to_f)
-        when 3
-          f = File.new("./#{@file_name}", 'a+')
-          f.printf("%11d %.12f\n", ts_to_f, p_p0_tatal)
-          f.close
-        end
+        dataout(ts_to_f, p_p0_tatal)
       end
+      @output_hash
     end
 
     private
@@ -100,7 +100,7 @@ module MainRun
   end
 
   class RunAns1979 < RunInit
-    def run(ts = @ts, t0 = @t0, power = @power, option = @option)
+    def run(ts = @ts, t0 = @t0, power = @power)
       read_data = ThermalData::DataForANS_5_1_1979.new
       ts.each_index do |i|
         ts_to_f = ts[i].to_f
@@ -124,20 +124,9 @@ module MainRun
           thePd_all_un = thePd_all * (1 + 3.0E-06 * ts_to_f)
         end
 
-        case option
-        when 1
-          printf("ts =  %3d years P/P0= %.12f\n", sec2day(ts_to_f) / 365, thePd_all)
-        when 0
-          printf("%3d %11d %.12f\n", sec2day(ts_to_f) / 365, ts_to_f, thePd_all)
-        when 2
-          printf( "ts = %.1f sec, t0 = %.1f sec, un = %.8f , P/P0(without un) = %.8f , P/P0(with un) = %.8f , power = %.5f MW\n",
-                  ts_to_f, t0_to_f, un, thePd_all, thePd_all_un, thePd_all_un * power_to_f)
-        when 3
-          f = File.new("./#{@file_name}", 'a+')
-          f.printf("%11d %.12f\n", ts_to_f, thePd_all_un)
-          f.close
-        end
+        dataout(ts_to_f, thePd_all_un)
       end
+      @output_hash
     end
 
     private
@@ -268,7 +257,7 @@ module MainRun
   end
 
   class RunASB9_2 < RunInit
-    def run(ts = @ts, t0 = @t0, power = @power, option = @option)
+    def run(ts = @ts, t0 = @t0, power = @power)
       read_data = ThermalData::DataForASB_9_2.new
       ts.each_index do |i|
         ts_to_f = ts[i].to_f
@@ -287,20 +276,9 @@ module MainRun
         p_p0_tatal[:with_k]    = p_p0[:with_k] + p_p0_U239 + p_p0_Np239
         p_p0_tatal[:without_k] = p_p0[:without_k] + p_p0_U239 + p_p0_Np239
 
-        case option
-        when 1
-          printf("ts =  %3d years P/P0 with k= %.12f P/P0 without k= %.12f\n", sec2day(ts_to_f) / 365, p_p0_tatal[:with_k], p_p0_tatal[:without_k])
-        when 0
-          printf("%3d %11d %.12f %.12f\n", sec2day(ts_to_f) / 365, ts_to_f, p_p0_tatal[:with_k], p_p0_tatal[:without_k])
-        when 2
-          printf("ts = %.1f sec, t0 = %.1f sec, P/P0(without K) = %.8f , P/P0(with K) = %.8f , power = %.5f MW\n",
-                 ts_to_f, t0_to_f, p_p0_tatal[:without_k], p_p0_tatal[:with_k], p_p0_tatal[:with_k] * power_to_f)
-        when 3
-          f = File.new("./#{@file_name}", 'a+')
-          f.printf("%11d %.12f %.12f\n", ts_to_f, p_p0_tatal[:with_k], p_p0_tatal[:without_k])
-          f.close
-        end
+        dataout(ts_to_f, p_p0_tatal[:with_k], p_p0_tatal[:without_k])
       end
+      @output_hash
     end
 
     private

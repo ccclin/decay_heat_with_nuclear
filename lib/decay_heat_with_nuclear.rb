@@ -1,13 +1,13 @@
 require 'decay_heat_with_nuclear/version'
-require './decay_heat_with_nuclear/thermal_data'
-require './decay_heat_with_nuclear/tools'
-require './decay_heat_with_nuclear/main_run.rb'
+require 'decay_heat_with_nuclear/thermal_data'
+require 'decay_heat_with_nuclear/tools'
+require 'decay_heat_with_nuclear/main_run'
 
 module DecayHeatWithNuclear
   def self.run(hash)
-    test1 = RunAns1979.new(hash, 0)
-    test2 = RunASB9_2.new(hash, 0)
-    test3 = RunAns1973.new(hash, 0)
+    test1 = MainRun::RunAns1979.new(hash)
+    test2 = MainRun::RunASB9_2.new(hash)
+    test3 = MainRun::RunAns1973.new(hash)
 
     {
       ans1979: test1.run,
