@@ -33,10 +33,10 @@ hash1 = output.output
 #   times = times * 10
 # end
 # ts << 365 * 86400
-ts = Array.new(20) { |i| i = (i + 1) * 365 * 24 * 3600 }
+ts = Array.new(20) { |i| (i + 1) * 365 * 24 * 3600 }
 hash2 = { ts: ts,
-          t0: Array.new(ts.size) { |i| i = 63 * 30 * 24 * 3600 },
-          power: Array.new(ts.size) { |i|  i = 2943 }}
+          t0: Array.new(ts.size) { 63 * 30 * 24 * 3600 },
+          power: Array.new(ts.size) { 2943 } }
 
 # 執行RunAns1979.new(hash, case)來配置前置檔案
 # hash即為上面說明的hash
