@@ -12,7 +12,7 @@ require 'decay_heat_with_nuclear'
 ```
 
 
-## Yor need a HASH
+## You need a HASH
 
 The hash will like this:
 
