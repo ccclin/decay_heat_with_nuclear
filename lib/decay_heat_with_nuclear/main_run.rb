@@ -5,14 +5,14 @@ module MainRun
     def initialize(hash_data, option = 0, file_name = 'default.txt')
       @ts = hash_data[:ts]
       @t0 = hash_data[:t0]
-      @power = hash_data[:power]
+      @power = []
       @option = option
       @file_name = file_name
       @output_hash = {
-                      ts:             [],
-                      p_p0:           [],
-                      p_p0_without_k: []
-                      }
+                        ts:             [],
+                        p_p0:           [],
+                        p_p0_without_k: []
+                     }
     end
 
     def dataout(ts, p_p0, p_p0_without_k = nil)
@@ -40,7 +40,7 @@ module MainRun
       ts.each_index do |i|
         ts_to_f = ts[i].to_f
         t0_to_f = t0[i].to_f
-        power_to_f = power[i].to_f
+        # power_to_f = power[i].to_f
 
         t0_add_ts   = ts_to_f + t0_to_f
 
@@ -105,7 +105,7 @@ module MainRun
       ts.each_index do |i|
         ts_to_f = ts[i].to_f
         t0_to_f = t0[i].to_f
-        power_to_f = power[i].to_f
+        # power_to_f = power[i].to_f
 
         t0_add_ts = ts_to_f + t0_to_f
         f_ts2t0 = calc_thermal_fission_functions(t0_to_f, ts_to_f, read_data)
@@ -262,7 +262,7 @@ module MainRun
       ts.each_index do |i|
         ts_to_f = ts[i].to_f
         t0_to_f = t0[i].to_f
-        power_to_f = power[i].to_f
+        # power_to_f = power[i].to_f
 
         t0_add_ts   = ts_to_f + t0_to_f
 
