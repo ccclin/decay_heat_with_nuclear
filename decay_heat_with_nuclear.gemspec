@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['demeter.yeh@gmail.com']
   spec.summary       = %q{It's a easy way to get nuclear fuel decay heat when it remove from reactor core.}
   spec.description   = %q{It's a easy way to get nuclear fuel decay heat when it remove from reactor core.}
-  spec.homepage      = ''
+  spec.homepage      = 'https://github.com/ccclin/decay_heat_with_nuclear'
   spec.license       = 'GPL3.0'
 
   spec.files         = `git ls-files -z`.split("\x0")
