@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = DecayHeatWithNuclear::VERSION
   spec.authors       = ['C.lin']
   spec.email         = ['demeter.yeh@gmail.com']
-  spec.summary       = %q{Decay heat with nuclear.}
-  spec.description   = %q{Decay heat with nuclear.}
+  spec.summary       = %q{It's a easy way to get nuclear fuel decay heat when it remove from reactor core.}
+  spec.description   = %q{It's a easy way to get nuclear fuel decay heat when it remove from reactor core.}
   spec.homepage      = ''
   spec.license       = 'GPL3.0'
 
