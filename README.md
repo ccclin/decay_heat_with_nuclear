@@ -3,14 +3,14 @@
 It's a easy way to get nuclear fuel decay heat when it remove from reactor core.
 Using 3 method `ASB9-2`, `ANS-1973` and `ANS-1979` to calculate it.
 
-## First, Install this gem
+## Install this gem
 
 ```
 gem install decay_heat_with_nuclear
 ```
 
 
-## Second, Yor need a HASH
+## Yor need a HASH
 
 The hash will like this:
 
@@ -22,11 +22,11 @@ hash = {
 ```
 
 where
-ts is `Time after remove (sec)`
+ts is `Time after remove (sec)`,
 t0 is `Cumulative reactor operating time (sec)`
 
 
-## Third, Calculate from this gem
+## Calculate from this gem
 
 ```
 DecayHeatWithNuclear.run(hash)
